@@ -22,7 +22,7 @@ public:
     }
     Counter ()
     {
-        count = 0;
+        count = 1;
     }
     Counter (int count)
     {
