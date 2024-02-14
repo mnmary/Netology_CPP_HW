@@ -2,22 +2,9 @@
 #include <iostream>
 #include "MyException.h"
 
-_Rectangle::_Rectangle(int a, int b)
+_Rectangle::_Rectangle(int a, int b) : Quad(a, b, a, b, 90, 90, 90, 90)
     {
-        if ((a == 0) || (b == 0))
-        {
-            throw MyException("Ошибка создания фигуры Прямоугольник. Причина: одна из сторон равна 0");
-        }
-        this->cntPoint = 4;
         this->name = "Прямоугольник";
-        this->a = a;
-        this->b = b;
-        this->c = a;
-        this->d = b;
-        this->A = 90;
-        this->B = 90;
-        this->C = 90;
-        this->D = 90;
     }
     void _Rectangle::print_info()
     {

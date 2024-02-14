@@ -30,7 +30,7 @@ int main()
     {
         Triangle triangle(10, 20, 30, 130, 20, 30);//треугольник
         print_info(&triangle);
-        EquTriangle equTriangle(20);    //равносторонний треугольник
+        EquTriangle equTriangle(10);    //равносторонний треугольник
         print_info(&equTriangle);
         IsoTriangle isoTriangle(20, 20, 45, 90);    //равнобедренный треугольник
         print_info(&isoTriangle);

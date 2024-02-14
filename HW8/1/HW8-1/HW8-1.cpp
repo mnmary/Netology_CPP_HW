@@ -3,18 +3,14 @@
 
 #include <iostream>
 #include <Windows.h>
-
-enum errors
-{
-    no_error,
-    bad_length
-};
+#include <stdexcept>
 
 int function(std::string str, int forbidden_length)
 {
     if (str.length() == forbidden_length)
     {
-        throw(bad_length);
+        std::string errorMessage = "bad_length";
+        throw std::runtime_error(errorMessage);
     }
     return (str.length());
 }
@@ -41,13 +37,14 @@ int main()
             word_len = function(word, forbidden_length);
             std::cout << "Длина слова \"" << word << "\" равна " << word_len << std::endl;
         }
-        catch (const errors e)
+        catch (const std::runtime_error& e)
         {
-            if (e == bad_length)
+            std::string errorMessage = e.what();
+            if (errorMessage == "bad_length")
             {
-                std::cout << "Вы ввели слово запретной длины! До свидания." << std::endl;
+                std::cout << "Вы ввели слово запретной длины. До свидания." << std::endl;
+                return -1;
             }
-            return -1;
         }
 
     }
