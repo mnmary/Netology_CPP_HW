@@ -28,7 +28,7 @@ int main()
     SetConsoleCP(1251);
     try 
     {
-        Triangle triangle(10, 20, 30, 130, 20, 30);//треугольник
+        Triangle triangle;//треугольник
         print_info(&triangle);
         EquTriangle equTriangle(10);    //равносторонний треугольник
         print_info(&equTriangle);

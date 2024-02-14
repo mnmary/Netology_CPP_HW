@@ -2,7 +2,7 @@
 #include <iostream>
 #include "MyException.h"
 
-Quad::Quad(int a, int b, int c, int d, int A, int B, int C, int D) : Quad()
+Quad::Quad(int a, int b, int c, int d, int A, int B, int C, int D) : Figure(4, "Четырехугольник")
     {
         if ((a == 0) || (b == 0) || (c == 0) || (d == 0))
         {
@@ -23,21 +23,9 @@ Quad::Quad(int a, int b, int c, int d, int A, int B, int C, int D) : Quad()
         this->D = D;
 
     }
-Quad::Quad()
+Quad::Quad() : Figure(4, "Четырехугольник")
 {
-    cntPoint = 4;
 
-    this->a = a;
-    this->b = b;
-    this->c = c;
-    this->d = d;
-
-    this->A = A;
-    this->B = B;
-    this->C = C;
-    this->D = D;
-
-    this->name = "Четырехугольник";
 }
 void Quad::print_info()
     {

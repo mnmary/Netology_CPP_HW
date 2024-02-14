@@ -2,7 +2,7 @@
 #include <iostream>
 #include "MyException.h"
 
-    Triangle::Triangle(int a, int b, int c, int A, int B, int C):Triangle()
+    Triangle::Triangle(int a, int b, int c, int A, int B, int C) : Figure(3, "Треугольник")
     {
         if ((a == 0) || (b == 0) || (c == 0))
         {
@@ -25,19 +25,8 @@
         this->C = C;
 
     }
-    Triangle::Triangle()  //default
+    Triangle::Triangle() : Figure(3, "Треугольник")
     {
-        cntPoint = 3;
-
-        this->a = a;
-        this->b = b;
-        this->c = c;
-
-        this->A = A;
-        this->B = B;
-        this->C = C;
-
-        this->name = "Треугольник";
     }
 
     void Triangle::print_info()

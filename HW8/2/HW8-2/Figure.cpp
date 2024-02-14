@@ -14,6 +14,11 @@
         cntPoint = 0;
         name = "";
     }
+    Figure::Figure(int cntPoint, std::string name)
+    {
+        this->cntPoint = cntPoint;
+        this->name = name;
+    }
     void Figure::print_info()
     {
         std::cout << name << std::endl;
