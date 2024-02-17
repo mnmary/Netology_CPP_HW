@@ -6,6 +6,7 @@ class EquTriangle :
 {
 public:
     EquTriangle(int );
+    EquTriangle(int, int, int, int, int, int);
     void print_info() override;
 };
 

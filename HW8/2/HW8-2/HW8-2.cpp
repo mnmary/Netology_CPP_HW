@@ -30,15 +30,31 @@ int main()
     {
         Triangle triangle;//треугольник
         print_info(&triangle);
+        EquTriangle equTriangle(10, 10, 10, 60, 60, 60);    //равносторонний треугольник
+        print_info(&equTriangle);
+        IsoTriangle isoTriangle(10,20,10,45,90,45);    //равнобедренный треугольник
+        print_info(&isoTriangle);
+        RectTriangle rectTriangle(20, 30, 40, 45, 45, 90);  //прямоугольный треугольник
+        print_info(&rectTriangle);
+        /*
         EquTriangle equTriangle(10);    //равносторонний треугольник
         print_info(&equTriangle);
         IsoTriangle isoTriangle(20, 20, 45, 90);    //равнобедренный треугольник
         print_info(&isoTriangle);
         RectTriangle rectTriangle(20, 30, 40, 45, 45);  //прямоугольный треугольник
         print_info(&rectTriangle);
-
+        */
         Quad quad;          //четырехугольник
         print_info(&quad);
+        _Rectangle rectangle(50, 20, 50, 20, 90, 90, 90,90);   //прямоугольник
+        print_info(&rectangle);
+        Parallelogram parallelogram(20, 30, 20, 30, 45, 135, 45, 135);   //параллелограм
+        print_info(&parallelogram);
+        Rhomb rhomb(20,20, 20, 20, 45, 135, 45, 135);    //ромб
+        print_info(&rhomb);
+        Square square(20,20,20,20,90,90,90,90);  //квадрат
+        print_info(&square);
+        /*
         _Rectangle rectangle(50, 20);   //прямоугольник
         print_info(&rectangle);
         Parallelogram parallelogram(20, 30, 45, 135);   //параллелограм
@@ -47,6 +63,7 @@ int main()
         print_info(&rhomb);
         Square square(20);  //квадрат
         print_info(&square);
+        */
     }
 
     catch (const MyException& e) 

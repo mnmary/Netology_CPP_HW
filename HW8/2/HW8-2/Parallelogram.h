@@ -6,6 +6,7 @@ class Parallelogram :
 {
 public:
     Parallelogram(int , int , int , int );
+    Parallelogram(int, int, int, int, int, int, int, int);
     void print_info() override;
 };
 

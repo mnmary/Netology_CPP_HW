@@ -6,6 +6,7 @@ class Square :
 {
 public:
     Square(int );
+    Square(int, int, int, int, int, int, int, int);
     void print_info() override;
 };
 

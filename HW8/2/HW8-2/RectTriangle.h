@@ -6,6 +6,7 @@ class RectTriangle :
 {
 public:
     RectTriangle(int , int , int , int , int );
+    RectTriangle(int, int, int, int, int, int);
     void print_info() override;
 };
 

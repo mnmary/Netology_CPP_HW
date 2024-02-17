@@ -139,10 +139,12 @@
     <ClCompile Include="Rhomb.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EquTriangle.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="IsoTriangle.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="Parallelogram.h" />

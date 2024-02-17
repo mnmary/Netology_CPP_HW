@@ -6,6 +6,7 @@ class IsoTriangle :
 {
 public:
     IsoTriangle(int , int , int , int );
-        void print_info() override;
+    IsoTriangle(int, int, int, int, int, int);
+    void print_info() override;
 };
 

@@ -6,6 +6,7 @@ class _Rectangle :
 {
 public:
     _Rectangle(int , int );
+    _Rectangle(int, int, int, int, int, int, int, int);
     void print_info() override;
 };
 
