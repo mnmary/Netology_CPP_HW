@@ -46,9 +46,9 @@ public:
 	}
 	Fraction& operator ++ (int)	//постфиксная
 	{
-		Fraction f = *this;
+		Fraction* f = new Fraction(*this);
 		this->numerator_ = this->numerator_ + this->denominator_;
-		return (f);
+		return (*f);
 	}
 	Fraction& operator -- ()	//префиксная
 	{
@@ -57,9 +57,9 @@ public:
 	}
 	Fraction& operator -- (int)	//постфиксная
 	{
-		Fraction f = *this;
+		Fraction* f = new Fraction(*this);
 		this->numerator_ = this->numerator_  - this->denominator_;
-		return (f);
+		return (*f);
 	}
 	Fraction& operator - ()	//унарный минус
 	{
@@ -76,8 +76,8 @@ public:
 		int numeratorLR = numeratorR + numeratorL;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction f(numeratorLR / nod, denominatorLR / nod);
-		return (f);
+		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
+		return (*f);
 	}
 	Fraction& operator - (const Fraction& right)	//вычесть
 	{
@@ -89,8 +89,8 @@ public:
 		int numeratorLR = numeratorL - numeratorR;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction f(numeratorLR / nod, denominatorLR / nod);
-		return (f);
+		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
+		return (*f);
 	}
 	Fraction& operator * (const Fraction& right)	//умножить
 	{
@@ -100,8 +100,8 @@ public:
 		int numeratorLR = this->numerator_ * right.numerator_;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction f(numeratorLR / nod, denominatorLR / nod);
-		return (f);
+		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
+		return (*f);
 	}
 	Fraction& operator / (const Fraction& right)	//поделить
 	{
@@ -111,8 +111,8 @@ public:
 		int numeratorLR = this->numerator_ * right.denominator_;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction f(numeratorLR / nod, denominatorLR / nod);
-		return (f);
+		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
+		return (*f);
 	}
 
 };
@@ -166,11 +166,7 @@ int main()
 	std::cout << "Значение дроби 1 = " << f1.fractionToStr() << std::endl;
 	
 	oldf = f1;
-	
-	//Тут ошибка - при умножении функция видит this с жуткими числами!!
 	f = (f1--) * f2;
-	//!!!
-	// 
 	std::cout  << oldf.fractionToStr() << "--" << " * " << f2.fractionToStr() << " = " << f.fractionToStr() << std::endl;
 	std::cout << "Значение дроби 1 = " << f1.fractionToStr() << std::endl;
 }
