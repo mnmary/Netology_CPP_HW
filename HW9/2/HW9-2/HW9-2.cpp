@@ -44,29 +44,29 @@ public:
 		this->numerator_ = this->numerator_ + this->denominator_;
 		return (*this);
 	}
-	Fraction& operator ++ (int)	//постфиксная
+	Fraction operator ++ (int)	//постфиксная
 	{
-		Fraction* f = new Fraction(*this);
+		Fraction f = *this;
 		this->numerator_ = this->numerator_ + this->denominator_;
-		return (*f);
+		return (f);
 	}
 	Fraction& operator -- ()	//префиксная
 	{
 		this->numerator_ = this->numerator_ - this->denominator_;
 		return (*this);
 	}
-	Fraction& operator -- (int)	//постфиксная
+	Fraction operator -- (int)	//постфиксная
 	{
-		Fraction* f = new Fraction(*this);
+		Fraction f = *this;
 		this->numerator_ = this->numerator_  - this->denominator_;
-		return (*f);
+		return (f);
 	}
 	Fraction& operator - ()	//унарный минус
 	{
 		this->numerator_ = -this->numerator_;
 		return (*this);
 	}
-	Fraction& operator + (const Fraction& right)	//сложить
+	Fraction operator + (const Fraction& right)	//сложить
 	{
 		//1 приведем к общему знаменателю обе дроби
 		int denominatorLR = this->denominator_ * right.denominator_;	//произведение знаменателей
@@ -76,10 +76,9 @@ public:
 		int numeratorLR = numeratorR + numeratorL;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
-		return (*f);
+		return (Fraction(numeratorLR / nod, denominatorLR / nod));
 	}
-	Fraction& operator - (const Fraction& right)	//вычесть
+	Fraction operator - (const Fraction& right)	//вычесть
 	{
 		//1 приведем к общему знаменателю обе дроби
 		int denominatorLR = this->denominator_ * right.denominator_;	//произведение знаменателей
@@ -89,10 +88,9 @@ public:
 		int numeratorLR = numeratorL - numeratorR;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
-		return (*f);
+		return (Fraction(numeratorLR / nod, denominatorLR / nod));
 	}
-	Fraction& operator * (const Fraction& right)	//умножить
+	Fraction operator * (const Fraction& right)	//умножить
 	{
 		//1 умножим знаменатели
 		int denominatorLR = this->denominator_ * right.denominator_;	//произведение знаменателей
@@ -100,10 +98,9 @@ public:
 		int numeratorLR = this->numerator_ * right.numerator_;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
-		return (*f);
+		return (Fraction(numeratorLR / nod, denominatorLR / nod));
 	}
-	Fraction& operator / (const Fraction& right)	//поделить
+	Fraction operator / (const Fraction& right)	//поделить
 	{
 		//1 умножим знаменатель на числитель
 		int denominatorLR = this->denominator_ * right.numerator_;	
@@ -111,8 +108,7 @@ public:
 		int numeratorLR = this->numerator_ * right.denominator_;
 		//3 сократим дробь, разделим числитель и знаменатель на наибольший общий делитель
 		int nod = gcd(numeratorLR, denominatorLR);
-		Fraction* f = new Fraction(numeratorLR / nod, denominatorLR / nod);
-		return (*f);
+		return (Fraction(numeratorLR / nod, denominatorLR / nod));
 	}
 
 };
