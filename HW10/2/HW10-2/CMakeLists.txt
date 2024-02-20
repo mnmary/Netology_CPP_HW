@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.22.0)
+project(HW10-2 VERSION 0.1)
+set(SOURCES "./sources/EquTriangle.cpp" "./sources/EquTriangle.h" "./sources/Figure.cpp" "./sources/Figure.h" "./sources/IsoTriangle.cpp" "./sources/IsoTriangle.h" "./sources/Parallelogram.cpp" "./sources/Parallelogram.h" "./sources/Quad.cpp" "./sources/Quad.h" "./sources/Rectangle.cpp" "./sources/Rectangle.h" "./sources/RectTriangle.cpp" "./sources/RectTriangle.h" "./sources/Rhomb.cpp" "./sources/Rhomb.h" "./sources/Square.cpp" "./sources/Square.h" "./sources/Triangle.cpp" "./sources/Triangle.h") 
+include_directories("./sources")
+add_executable(HW10-2 "./main/HW10-2.cpp" ${SOURCES})
