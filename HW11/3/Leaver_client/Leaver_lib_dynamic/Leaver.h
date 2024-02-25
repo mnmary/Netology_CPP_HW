@@ -4,6 +4,6 @@
 class Leaver
 {
 public:
-	__declspec(dllexport) void leave(std::string nm);
+	void leave(std::string nm);
 };
 
