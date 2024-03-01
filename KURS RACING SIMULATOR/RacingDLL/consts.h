@@ -1,5 +1,7 @@
 #pragma once
-enum RacingType
+#include "defineDLL.h"
+
+enum RACINGDLL_API RacingType
 {
     Ground = 1,
     Air,
@@ -7,7 +9,7 @@ enum RacingType
     None = 0
 };
 
-enum TransportType
+enum RACINGDLL_API TransportType
 {
     TTCentaur = 1,
     TTCamel,
