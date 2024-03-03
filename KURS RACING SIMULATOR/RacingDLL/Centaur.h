@@ -2,8 +2,7 @@
 #include "GroundTransport.h"
 #include "defineDLL.h"
 
-class Centaur :
-    public GroundTransport
+class Centaur : public GroundTransport
 {
 public:
     RACINGDLL_API void calcRacingTime(int) override;

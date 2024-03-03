@@ -2,8 +2,7 @@
 #include "GroundTransport.h"
 #include "defineDLL.h"
 
-class FastCamel :
-    public GroundTransport
+class FastCamel : public GroundTransport
 {
 public:
     RACINGDLL_API void calcRacingTime(int) override;

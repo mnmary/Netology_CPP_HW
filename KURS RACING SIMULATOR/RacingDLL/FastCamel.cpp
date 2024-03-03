@@ -8,6 +8,14 @@ void FastCamel::calcRacingTime(int distance)
     //реализация расчета для конкретного ТC
     double distanceBetweenStops = speed * timeBeforeRest;  //дистанция между соседними точками отдыха, км
     int stops = static_cast<int>(distance / distanceBetweenStops);        //количество точек отдыха - остаток от деления
+    double delta = distance - (stops * distanceBetweenStops);//
+    if (delta == 0)//последний стоп - на финише
+    {
+        if (stops > 0)
+        {
+            stops--; //последний стоп не нужен
+        }
+    }
 
     double timeRestStops = 0;  //время отдыха на всей дистанции, ч
     if (stops > 2)

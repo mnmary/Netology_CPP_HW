@@ -2,8 +2,7 @@
 #include "AirTransport.h"
 #include "defineDLL.h"
 
-class Eagle :
-    public AirTransport
+class Eagle :  public AirTransport
 {
 public:
     RACINGDLL_API void calcRacingTime(int) override;

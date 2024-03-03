@@ -2,8 +2,7 @@
 #include "GroundTransport.h"
 #include "defineDLL.h"
 
-class AllTerrainBoots :
-    public GroundTransport
+class AllTerrainBoots : public GroundTransport
 {
 public:
     RACINGDLL_API void calcRacingTime(int) override;

@@ -1,7 +1,6 @@
 #pragma once
 #include "Transport.h"
-class GroundTransport :
-    public Transport
+class GroundTransport : public Transport
 {
     //наземный транспорт
 protected:
