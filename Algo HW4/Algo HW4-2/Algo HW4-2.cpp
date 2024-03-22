@@ -9,18 +9,18 @@ void append_to_dynamic_array(int*& arr, int& logSize, int& factSize, int inValue
     if (factSize < logSize)
     {
         factSize = factSize * 2;
+
+
+        int* newArr = new int[factSize];
+
+
+        for (int i = 0; i < logSize; i++)
+        {
+            newArr[i] = arr[i];
+        }
+        delete[] arr;
+        arr = newArr;
     }
-
-    int* newArr = new int[factSize];
-    
-
-    for (int i = 0; i < logSize; i++) 
-    {
-        newArr[i] = arr[i];
-    }
-    delete[] arr;
-    arr = newArr;
-
     arr[logSize - 1] = inValue;
 }
 
