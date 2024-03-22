@@ -18,7 +18,8 @@ void append_to_dynamic_array(int*& arr, int& logSize, int& factSize, int inValue
     {
         newArr[i] = arr[i];
     }
-    std::memcpy(&arr, &newArr, factSize * sizeof(int));
+    delete[] arr;
+    arr = newArr;
 
     arr[logSize - 1] = inValue;
 }

@@ -16,7 +16,8 @@ void remove_dynamic_array_head(int*& arr, int& logSize, int& factSize)
     {
         newArr[i-1] = arr[i];
     }
-    std::memcpy(&arr, &newArr, factSize * sizeof(int));
+    delete[] arr;
+    arr = newArr;
 
     logSize--;
 }
