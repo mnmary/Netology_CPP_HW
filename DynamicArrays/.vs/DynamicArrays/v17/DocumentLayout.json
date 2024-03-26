@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\CPP Homeworks\\DynamicArrays\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{50A09669-610E-4B7E-A8AC-1963E3268803}|DynamicArrays.vcxproj|F:\\CPP Homeworks\\DynamicArrays\\DynamicArrays.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{50A09669-610E-4B7E-A8AC-1963E3268803}|DynamicArrays.vcxproj|solutionrelative:DynamicArrays.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DynamicArrays.cpp",
+              "DocumentMoniker": "F:\\CPP Homeworks\\DynamicArrays\\DynamicArrays.cpp",
+              "RelativeDocumentMoniker": "DynamicArrays.cpp",
+              "ToolTip": "F:\\CPP Homeworks\\DynamicArrays\\DynamicArrays.cpp",
+              "RelativeToolTip": "DynamicArrays.cpp",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAABwAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-26T10:10:22.005Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
