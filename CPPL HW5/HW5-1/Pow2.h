@@ -3,13 +3,14 @@
 #include <vector>
 
 template <typename T>
-T pow2(T value)
+T pow2(const T& value)                              //В реализации шаблонов, лучше использовать константные ссылки для входных параметров: `T pow2(const T& value)`. 
+                                                    //Для вектора у вас неявно создаётся копия входного вектора на стеке, лучше делать явное создание вектора, который будете возвращать
 {
 	return value * value;
 }
 
 template <typename T>
-std::vector<T> pow2(std::vector<T> value)
+std::vector<T> pow2(std::vector<T> value)           
 {
     for (int i = 0; i < value.size(); i++)
     {
@@ -20,9 +21,9 @@ std::vector<T> pow2(std::vector<T> value)
 }
 
 template<typename T>
-void printValue(T value)
+void printValue(const T& value)
 {
-    std::cout << value;
+    std::cout << std::fixed << value;
     std::cout << std::endl;
 }
 

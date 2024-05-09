@@ -3,61 +3,28 @@
 
 #include <iostream>
 #include <vector>
-class get_sum
+#include "get_sum_count.h"
+void print(const std::vector<int>& vect)
 {
-public:
-    get_sum()
+    for (auto v:vect)
     {
-
-    }
-    int operator ()(std::vector<int> v)
-    {
-        int sum = 0;
-        for (auto a : v)
-        {
-            if (a % 3 == 0)
-            {
-                sum += a;
-            }
-        }
-        return sum;
-    }
-};
-class get_count
-{
-public:
-    get_count()
-    {
-
-    }
-    int operator ()(std::vector<int> v)
-    {
-        int cnt = 0;
-        for (auto a : v)
-        {
-            if (a % 3 == 0)
-            {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
-};
-
-int main()
-{
-    std::vector<int> vect{ 4, 1, 3, 6, 25, 54 };
-    std::cout << "[IN]: ";
-    for (int i = 0; i < vect.size(); i++)
-    {
-        std::cout << vect[i] << " ";
+        std::cout << v << " ";
     }
     std::cout << std::endl;
 
-    get_sum g;
-    std::cout << "[OUT]: get_sum() = " << g(vect) << std::endl;
-    get_count c;
-    std::cout << "[OUT]: get_count() = " << c(vect) << std::endl;
+}
+int main()
+{
+    std::vector<int> vect{ 4, 1, 3, 6, 25, 54 };
+
+    std::cout << "[IN]: ";
+    print(vect);
+
+    get_sum_count g;
+    g(vect);
+
+    std::cout << "[OUT]: get_sum() = " << g.get_sum() << std::endl;
+    std::cout << "[OUT]: get_count() = " << g.get_count() << std::endl;
 }
 
 
