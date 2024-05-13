@@ -9,7 +9,7 @@ int main()
 {
     setlocale(LC_ALL, "Rus");
 
-    MyVector<std::string> myVector;
+    HW7_3::MyVector<std::string> myVector;
     myVector.push_back("10.2");
     myVector.push_back("20");
     myVector.push_back("30");

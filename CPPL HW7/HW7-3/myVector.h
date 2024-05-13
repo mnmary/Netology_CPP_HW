@@ -1,64 +1,68 @@
 #pragma once
 #include <iostream>
 #include <string>
-template <typename T>
-class MyVector
+namespace HW7_3
 {
-private:
-    int _size = 0;
-    int _capacity = 0;
-    T* pArray;
-
-    T* resizeArray()
+    template <typename T>
+    class MyVector
     {
-        if (_capacity == 0)
+    private:
+        int _size = 0;
+        int _capacity = 0;
+        T* pArray;
+
+        T* resizeArray()
         {
-            _capacity = 1;
+            if (_capacity == 0)
+            {
+                _capacity = 1;
+            }
+
+            _capacity *= 2;
+
+            T* pNewArray = new T[_capacity];
+            for (int i = 0; i < _size; i++)
+            {
+                pNewArray[i] = pArray[i];
+            }
+            delete[] pArray;
+
+            return pNewArray;
+        }
+    public:
+        T at(int index)
+        {
+            if (index > _size - 1)
+            {
+                throw std::runtime_error("Нет элемента с индексом " + std::to_string(index));
+            }
+            return pArray[index];
+        }
+        void push_back(T value)
+        {
+            if ((_size + 1) > _capacity)
+            {
+                pArray = resizeArray();
+            }
+            pArray[_size++] = value;
         }
 
-        _capacity *= 2;
-
-        T* pNewArray = new T[_capacity];
-        for (int i = 0; i < _size; i++)
+        int size()
         {
-            pNewArray[i] = pArray[i];
+            return _size;
         }
-        delete[] pArray;
-
-        return pNewArray;
-    }
-public:
-    T at(int index)
-    {
-        if (index > _size - 1)
+        int capacity()
         {
-            throw std::runtime_error("Нет элемента с индексом " + std::to_string(index));
+            return _capacity;
         }
-        return pArray[index];
-    }
-    void push_back(T value)
-    {
-        if ((_size + 1) > _capacity)
+        MyVector()
         {
-            pArray = resizeArray();
+            pArray = new T[_capacity];
         }
-        pArray[_size++] = value;
-    }
+        ~MyVector()
+        {
+            delete[] pArray;
+        }
+    };
 
-    int size()
-    {
-        return _size;
-    }
-    int capacity()
-    {
-        return _capacity;
-    }
-    MyVector()
-    {
-        pArray = new T[_capacity];
-    }
-    ~MyVector()
-    {
-        delete[] pArray;
-    }
-};
+}
