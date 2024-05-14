@@ -8,14 +8,10 @@
 #include <utility>
 #include <algorithm>
 
-bool mySort(const std::pair< std::string, int>& a, const std::pair < std::string, int>& b)
-{
-    return a.second > b.second;
-}
-
 int main()
 {
-    std::map< std::string, int > myMap;
+    std::map< std::string, int> myMap;
+    std::multimap< int, std::string, std::greater<int> > myMapR;
     std::string myStr, myS;
 
     std::cout << "[IN]: ";
@@ -28,10 +24,12 @@ int main()
     }
     std::cout << "[OUT]: " << std::endl;
     
-    std::vector< std::pair<std::string, int> > myVec(myMap.begin(), myMap.end());
-
-    std::sort(myVec.begin(), myVec.end(),mySort);
-    for (auto v : myVec)
+    for (auto v : myMap)
+    {
+        std::pair<int, std::string> myPair(v.second, v.first);
+        myMapR.insert(myPair);
+    }
+    for (auto v : myMapR)
     {
         std::cout << v.first << " " << v.second << std::endl;
     }
