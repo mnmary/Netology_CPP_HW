@@ -7,17 +7,17 @@ namespace HW10_3
     {
     private:
         T* _ptr{ nullptr };
-        std::string _name{ "" };
     public:
-        MyUnique_Ptr(T* ptr, const std::string& name) : _ptr{ ptr }, _name{ name }
+        explicit MyUnique_Ptr(T* ptr) : _ptr{ ptr }
         {
-            std::cout << "Constructor " << _name << std::endl;
+            std::cout << "Constructor "<< std::endl;
         }
 
         ~MyUnique_Ptr()
         {
-            std::cout << "Destructor " << _name << std::endl;
+            std::cout << "Destructor " << std::endl;
             _ptr = nullptr;
+            delete _ptr;
         }
 
         MyUnique_Ptr(const MyUnique_Ptr& other) = delete;
@@ -25,21 +25,13 @@ namespace HW10_3
 
         T& operator *() const
         {
-            std::cout << "Operator * " << _name << std::endl;
-
-            if (_ptr)
-            {
-                return *_ptr;
-            }
-            else
-            {
-                throw("Error of pointer");
-            };
+            std::cout << "Operator * " << std::endl;
+            return *_ptr;
         }
 
         T* release()
         {
-            std::cout << "release " << _name << std::endl;
+            std::cout << "release " << std::endl;
 
             T* newPtr(_ptr);
             _ptr = nullptr;
@@ -47,9 +39,5 @@ namespace HW10_3
             return newPtr;
         }
 
-        T* getPtr() const
-        {
-            return _ptr;
-        }
-    };
+     };
 }
