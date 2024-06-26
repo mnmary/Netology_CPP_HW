@@ -4,8 +4,6 @@ MyClientBase::MyClientBase(const std::string& connectionString) :_connectionStri
 
 void MyClientBase::createTable()
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
         transact.exec("CREATE TABLE IF NOT EXISTS clients(id SERIAL PRIMARY KEY, name VARCHAR(500), surname VARCHAR(500), email VARCHAR(100) UNIQUE);"
@@ -13,19 +11,9 @@ void MyClientBase::createTable()
         transact.commit();
 
         std::cout << "New table action" << std::endl;
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
-
 }
 void MyClientBase::createClient(const std::string& name, const std::string& surname, const std::string& email, const std::string& phone)
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
 
@@ -38,18 +26,9 @@ void MyClientBase::createClient(const std::string& name, const std::string& surn
             transact.commit();
             std::cout << "New client action" << std::endl;
         }
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
 }
 void MyClientBase::addPhone(const std::string& name, const std::string& phone)
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
 
@@ -62,20 +41,11 @@ void MyClientBase::addPhone(const std::string& name, const std::string& phone)
             transact.commit();
             std::cout << "New phone action" << std::endl;
         }
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
 
 }
 
 void MyClientBase::updateClients(const std::string& email, const std::string& newName, const std::string& newSurname, const std::string& newEmail)
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
 
@@ -88,19 +58,10 @@ void MyClientBase::updateClients(const std::string& email, const std::string& ne
             transact.commit();
             std::cout << "Update client action" << std::endl;
         }
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
 }
 
 void MyClientBase::deletePhone(const std::string& email, const std::string& phone)
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
 
@@ -113,19 +74,10 @@ void MyClientBase::deletePhone(const std::string& email, const std::string& phon
             transact.commit();
             std::cout << "Delete phone action" << std::endl;
         }
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
 }
 
 void MyClientBase::deleteClient(const std::string& email)
 {
-    try
-    {
         pqxx::connection conn(_connectionString);
         pqxx::work transact(conn);
 
@@ -139,45 +91,29 @@ void MyClientBase::deleteClient(const std::string& email)
             transact.commit();
             std::cout << "Delete client action" << std::endl;
         }
-    }
-    catch (const std::exception& ex)
-    {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
-    }
 }
 std::vector<MyClient> MyClientBase::findClients(const std::string& searchString)
 {
     std::vector<MyClient> clientList;
-    try
-    {
-        pqxx::connection conn(_connectionString);
-        pqxx::work transact(conn);
+    pqxx::connection conn(_connectionString);
+    pqxx::work transact(conn);
 
-        pqxx::result res = transact.exec_params("SELECT * FROM clients LEFT JOIN phones ON Phones.client_id = clients.id"
-            " WHERE clients.name = $1 OR clients.surname=$1 OR clients.email = $1 OR phones.phone = $1", searchString);
-        if (!res.empty())
-        {
-            for (auto row : res)
-            {
-                MyClient client;
-                client.name = row["name"].as<std::string>();
-                client.surname = row["surname"].as<std::string>();
-                client.email = row["email"].as<std::string>();
-                client.phone = row["phone"].as<std::string>();
-                clientList.push_back(client);
-            }
-        }
-        std::cout << "Find client action" << std::endl;
-        return clientList;
-    }
-    catch (const std::exception& ex)
+    pqxx::result res = transact.exec_params("SELECT * FROM clients LEFT JOIN phones ON Phones.client_id = clients.id"
+                                            " WHERE clients.name = $1 OR clients.surname=$1 OR clients.email = $1 OR phones.phone = $1", searchString);
+    if (!res.empty())
     {
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-        std::cout << "Error: " << ex.what() << std::endl;
+        for (auto row : res)
+        {
+            MyClient client;
+            client.name = row["name"].as<std::string>();
+            client.surname = row["surname"].as<std::string>();
+            client.email = row["email"].as<std::string>();
+            client.phone = row["phone"].as<std::string>();
+            clientList.push_back(client);
+        }
+        std::cout << "Find client action: search string = " << searchString << std::endl;
     }
+    return clientList;
 }
 void MyClientBase::print(const std::vector<MyClient>& clientList)
 {

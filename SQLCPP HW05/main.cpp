@@ -1,5 +1,4 @@
 #include <iostream>
-#include <pqxx/pqxx>
 #include <windows.h>
 #include <vector>
 
@@ -8,10 +7,12 @@
 
 int main()
 {
-		std::string connection_string = "host=127.0.0.1 port=5432 dbname=test user=postgres password=11223344";
+    try
+    {
+        std::string connection_string = "host=127.0.0.1 port=5432 dbname=test user=postgres password=11223344";
         MyClientBase clients(connection_string);
         clients.createTable();
-        clients.createClient("name1","surname1","email1","phone11");
+        clients.createClient("name1", "surname1", "email1", "phone11");
         clients.createClient("name2", "surname2", "email2", "phone21");
         clients.createClient("name3", "surname3", "email3", "phone31");
         clients.createClient("name4", "surname4", "email4", "phone41");
@@ -57,4 +58,12 @@ int main()
         clients.deleteClient("changeEmail2");
         clients.deleteClient("changeEmail3");
         clients.deleteClient("changeEmail4");
+    }
+    catch (const std::exception& ex)
+    {
+        SetConsoleCP(CP_UTF8);
+        SetConsoleOutputCP(CP_UTF8);
+        std::cout << "Error: " << ex.what() << std::endl;
+     }
+
 }
