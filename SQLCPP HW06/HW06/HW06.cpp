@@ -5,20 +5,89 @@
 #include <Wt/Dbo/Dbo.h>
 #include <Wt/Dbo/backend/Postgres.h>
 #include <windows.h>
+class Book;
 
-class User {
+class Publisher {
 public:
     std::string name = "";
-    std::string phone = "";
-    int karma = 0;
+    Wt::Dbo::collection< Wt::Dbo::ptr<Book> > books;
+
     template<class Action>
     void persist(Action& a)
     {
         Wt::Dbo::field(a, name, "name");
-        Wt::Dbo::field(a, phone, "phone");
-        Wt::Dbo::field(a, karma, "karma");
+        Wt::Dbo::hasMany(a, books, Wt::Dbo::ManyToOne, "publisher");
     }
 };
+
+class Stock;
+class Shop {
+public:
+    std::string name = "";
+    Wt::Dbo::collection< Wt::Dbo::ptr<Stock> > stocks;
+
+    template<class Action>
+    void persist(Action& a)
+    {
+        Wt::Dbo::field(a, name, "name");
+        Wt::Dbo::hasMany(a, stocks, Wt::Dbo::ManyToOne, "shop");
+    }
+};
+
+
+class Book {
+public:
+    std::string title = "";
+    Wt::Dbo::ptr<Publisher> publisher_id;
+    Wt::Dbo::collection< Wt::Dbo::ptr<Stock> > stocks;
+
+    template<class Action>
+    void persist(Action& a)
+    {
+        Wt::Dbo::field(a, title, "title");
+        Wt::Dbo::belongsTo(a, publisher_id, "publisher");
+        Wt::Dbo::hasMany(a, stocks, Wt::Dbo::ManyToOne, "book");
+    }
+};
+
+class Sale;
+
+
+class Stock {
+public:
+    int count = 0;
+    Wt::Dbo::ptr<Book> book_id;
+    Wt::Dbo::ptr<Shop> shop_id;
+    Wt::Dbo::collection< Wt::Dbo::ptr<Sale> > sales;
+
+    template<class Action>
+    void persist(Action& a)
+    {
+        Wt::Dbo::field(a, count, "count");
+        Wt::Dbo::belongsTo(a, book_id, "book");
+        Wt::Dbo::belongsTo(a, shop_id, "shop");
+        Wt::Dbo::hasMany(a, sales, Wt::Dbo::ManyToOne, "stock");
+    }
+};
+
+class Sale {
+public:
+    double price = 0.0;
+    std::string date_sale = "2000-01-01";
+    int count = 0;
+    Wt::Dbo::ptr<Stock> stock_id;
+
+    template<class Action>
+    void persist(Action& a)
+    {
+        Wt::Dbo::field(a, price, "price");
+        Wt::Dbo::field(a, date_sale, "date_sale");
+        Wt::Dbo::field(a, count, "count");
+        Wt::Dbo::belongsTo(a, stock_id, "stock");
+    }
+};
+
+
 
 int main()
 {
@@ -33,36 +102,18 @@ int main()
         auto postgres = std::make_unique<Wt::Dbo::backend::Postgres>(connectionString);
         Wt::Dbo::Session session;
         session.setConnection(std::move(postgres));
-        session.mapClass<User>("user");
-        //session.createTables();
-        
+
         Wt::Dbo::Transaction transaction{ session };
 
-        std::unique_ptr<User> user{ new User() };
-        user->name = "Joe11";
-        user->phone = "1234567890";
-        user->karma = 13;
-        Wt::Dbo::ptr<User> userPtr = session.add(std::move(user));
+        session.mapClass<Publisher>("publisher");
+        session.mapClass<Shop>("shop");
+       session.mapClass<Book>("book");
+        session.mapClass<Stock>("stock");
+        session.mapClass<Sale>("sale");
+        session.dropTables();
+        session.createTables();
+        
         transaction.commit();
-
-        Wt::Dbo::Transaction transaction2{ session };
-        Wt::Dbo::ptr<User> joe = session.find<User>().where("name = ?").bind("Joe11");
-        std::cout << "Joe has karma: " << joe->karma << std::endl;
-        joe.modify()->name = "John";
-        joe.modify()->karma = 100;
-        transaction2.commit();
-
-
-        typedef Wt::Dbo::collection<Wt::Dbo::ptr<User>> Users;
-        Wt::Dbo::Transaction transaction1{ session };
-        Users users = session.find<User>();
-        std::cout << "We have " << users.size() << " users:" << std::endl;
-        for (const Wt::Dbo::ptr<User>& user : users)
-        {
-            std::cout << " user " << user->name
-                << " with karma of " << user->karma << std::endl;
-        }
-        transaction1.commit();
     }
     catch (const Wt::Dbo::Exception& e) 
     {
