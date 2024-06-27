@@ -151,7 +151,7 @@ int main()
         session.mapClass<Book>("book");
         session.mapClass<Stock>("stock");
         session.mapClass<Sale>("sale");
-        session.dropTables(); //не стоит использовать эту команду - она может выдать ошибку, если таблицы из списка нет в базе!!!
+       // session.dropTables(); //не стоит использовать эту команду - она может выдать ошибку, если таблицы из списка нет в базе!!!
         session.createTables();
         
         Wt::Dbo::Transaction transaction{ session };
