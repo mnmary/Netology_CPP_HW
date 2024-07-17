@@ -11,29 +11,32 @@
 
 HANDLE hStdOut;
 std::mutex mutex;
+COORD point;
 
 void drawProgress( int tNum, int level)
 {
     mutex.lock();
     auto tId = std::this_thread::get_id();
     auto timerBeg = std::chrono::high_resolution_clock::now();
-    COORD point;
-    point.X = 0;
-    point.Y = tNum*2;
-    SetConsoleCursorPosition(hStdOut, point);
-    mutex.unlock();
+     mutex.unlock();
 
     for (int i = 0; i < level; i++)
     {
         mutex.lock();
+        point.X = i;
+        point.Y = tNum * 2;
+        SetConsoleCursorPosition(hStdOut, point);
         std::cout << char(219);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         mutex.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
     mutex.lock();
     auto timerEnd = std::chrono::high_resolution_clock::now();
     auto timeElapsed = std::chrono::duration_cast<std::chrono::duration<double, std::ratio<1> > >(timerEnd - timerBeg).count();
+    point.X = level+5;
+    point.Y = tNum * 2;
+    SetConsoleCursorPosition(hStdOut, point);
     std::cout << "  #" << tNum + 1 << "  ID = " << tId << "   Timer = " << timeElapsed << std::endl;
     mutex.unlock();
 }
@@ -55,5 +58,9 @@ int main()
     {
         i.join();
     }
+    point.X = 0;
+    point.Y = tCount * 2;
+    SetConsoleCursorPosition(hStdOut, point);
+
 
  }
