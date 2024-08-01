@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kurs Thread", "Kurs Thread.vcxproj", "{7DFAB925-4415-4857-B4A8-D7799280A36E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Debug|x64.ActiveCfg = Debug|x64
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Debug|x64.Build.0 = Debug|x64
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Debug|x86.ActiveCfg = Debug|Win32
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Debug|x86.Build.0 = Debug|Win32
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Release|x64.ActiveCfg = Release|x64
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Release|x64.Build.0 = Release|x64
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Release|x86.ActiveCfg = Release|Win32
+		{7DFAB925-4415-4857-B4A8-D7799280A36E}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46942BF1-7F0D-4732-B6DC-066E738E1A1A}
+	EndGlobalSection
+EndGlobal
