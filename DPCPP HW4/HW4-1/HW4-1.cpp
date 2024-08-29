@@ -6,18 +6,22 @@
 
 class Printable
 {
+protected:
+    std::string str{ "" }; 
 public:
     virtual ~Printable() = default;
 
     virtual std::string print() const = 0;
+
 };
 
 class DataText : public Printable
 {
-private:
-    std::string str{ "" };
 public:
-    DataText(std::string str):str {str} {}
+    DataText(std::string str) 
+    {
+        this->str = str;
+    }
     std::string print() const override
     {
        return str;
@@ -26,10 +30,12 @@ public:
 
 class DataHTML : public Printable
 {
-private:
-    std::string str{ "" };
 public:
-    DataHTML(std::string str) :str{ str } {}
+    DataHTML(std::string str)
+    {
+        this->str = str;
+    }
+
     std::string print() const override
     {
         return "<html>" + str + "<html/>";
@@ -38,19 +44,21 @@ public:
 
 class DataJSON : public Printable
 {
-private:
-    std::string str{ "" };
 public:
-    DataJSON(std::string str) :str{ str } {}
+    DataJSON(std::string str)
+    {
+        this->str = str;
+    }
+
     std::string print() const override
     {
         return "{ \"str\": \"" + str + "\"}";
     }
 };
 
-void saveTo(std::ofstream& file, const Printable& printable)
+void saveTo(std::ofstream& file, const Printable* printable)
 {
-    file << printable.print();
+    file << printable->print();
     file << std::endl;
 }
 
@@ -63,9 +71,9 @@ int main()
     std::ofstream file("string.txt");
     if (file.is_open())
     {
-        saveTo(file, *printable);
-        saveTo(file, *printable1);
-        saveTo(file, *printable2);
+        saveTo(file, printable);
+        saveTo(file, printable1);
+        saveTo(file, printable2);
     }
     file.close();    
     return 0;
