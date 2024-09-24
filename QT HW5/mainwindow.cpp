@@ -43,6 +43,7 @@ void MainWindow::btnStartStop_clicked(bool checked)
     {
         ui->btnStartStop->setText("Старт");
         timer->stop();
+        ui->circleLog->clear();
     }
     else
     {

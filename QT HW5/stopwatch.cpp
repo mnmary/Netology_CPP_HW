@@ -55,7 +55,7 @@ QString StopWatch::calcTime()
 QString StopWatch::ringTime()
 {
     ringCntMs = cntMs - oldCntMs;
-    return milisecondsToString(ringCntMs);
     oldCntMs = cntMs;
+    return milisecondsToString(ringCntMs);
 }
 
