@@ -55,6 +55,8 @@ void MainWindow::btnStartStop_clicked(bool checked)
 void MainWindow::resetBtn_clicked(bool checked)
 {
     timer->reset();
+    ui->circleLog->clear();
+    cntCircle = 0;
 }
 
 void MainWindow::circleBtn_clicked(bool checked)
