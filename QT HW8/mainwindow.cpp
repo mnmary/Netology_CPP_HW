@@ -81,54 +81,48 @@ void MainWindow::on_act_connect_triggered()
 
 void MainWindow::on_pb_request_clicked()
 {
+    //определим тип запроса
     QString typeRequest = ui->cb_category->currentText();
 
-    if(typeRequest == "Все") {
-        auto req = [&]{dataBase->RequestToDB(request_all);};
-
-        QtConcurrent::run(req);
-
-
+    if(typeRequest == "Все")
+    {
+        dataBase->RequestToDB(request_all);
     }
 
-    else if(typeRequest == "Комедия"){
-
-
-        auto req = [&]{dataBase->RequestToDB(request_comedy);};
-
-        QtConcurrent::run(req);
+    else if(typeRequest == "Комедия")
+    {
+        dataBase->RequestToDB(request_comedy);
     }
 
-    else if(typeRequest == "Ужасы"){
-
-
-        auto req = [&]{dataBase->RequestToDB(request_horror);};
-
-        QtConcurrent::run(req);
+    else if(typeRequest == "Ужасы")
+    {
+        dataBase->RequestToDB(request_horror);
     }
 }
 
 void MainWindow::ScreenDataFromDB(const QTableWidget *widget)
 {
+    //выводим результаты запроса
+    ui->tb_result->setRowCount(widget->rowCount( ));
+    ui->tb_result->setColumnCount(widget->columnCount( ));
 
-            ui->tb_result->setRowCount(widget->rowCount( ));
-            ui->tb_result->setColumnCount(widget->columnCount( ));
+    QStringList headersList;
 
-            QStringList hdrs;
+    for(int i = 0; i < widget->columnCount(); ++i)
+    {
+        headersList << widget->horizontalHeaderItem(i)->text();
+    }
+    ui->tb_result->setHorizontalHeaderLabels(headersList);
 
-            for(int i = 0; i < widget->columnCount(); ++i){
-                hdrs << widget->horizontalHeaderItem(i)->text();
-            }
-            ui->tb_result->setHorizontalHeaderLabels(hdrs);
+    for(int i = 0; i<widget->rowCount(); ++i)
+    {
+        for(int j = 0; j<widget->columnCount(); ++j)
+        {
+            ui->tb_result->setItem(i,j, widget->item(i,j)->clone());
+        }
+    }
 
-            for(int i = 0; i<widget->rowCount(); ++i){
-                for(int j = 0; j<widget->columnCount(); ++j){
-                    ui->tb_result->setItem(i,j, widget->item(i,j)->clone());
-                }
-            }
-
-            ui->tb_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
+    ui->tb_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 
