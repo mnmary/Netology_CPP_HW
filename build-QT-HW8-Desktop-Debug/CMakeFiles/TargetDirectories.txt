@@ -1,0 +1,4 @@
+F:/CPP Homeworks/build-QT-HW8-Desktop-Debug/CMakeFiles/PreDataBase.dir
+F:/CPP Homeworks/build-QT-HW8-Desktop-Debug/CMakeFiles/edit_cache.dir
+F:/CPP Homeworks/build-QT-HW8-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+F:/CPP Homeworks/build-QT-HW8-Desktop-Debug/CMakeFiles/PreDataBase_autogen.dir

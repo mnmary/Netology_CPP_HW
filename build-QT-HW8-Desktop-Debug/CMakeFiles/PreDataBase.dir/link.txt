@@ -1,0 +1,3 @@
+D:\Qt6\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\PreDataBase.dir/objects.a
+D:\Qt6\Tools\mingw1120_64\bin\ar.exe qc CMakeFiles\PreDataBase.dir/objects.a @CMakeFiles\PreDataBase.dir\objects1.rsp
+D:\Qt6\Tools\mingw1120_64\bin\g++.exe -DQT_QML_DEBUG -g -Wl,--whole-archive CMakeFiles\PreDataBase.dir/objects.a -Wl,--no-whole-archive -o PreDataBase.exe -Wl,--out-implib,libPreDataBase.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PreDataBase.dir\linklibs.rsp
