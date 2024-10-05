@@ -1,4 +1,0 @@
-F:/CPP Homeworks/build-QT-HW7-Desktop-Debug/CMakeFiles/PreGraphic.dir
-F:/CPP Homeworks/build-QT-HW7-Desktop-Debug/CMakeFiles/edit_cache.dir
-F:/CPP Homeworks/build-QT-HW7-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-F:/CPP Homeworks/build-QT-HW7-Desktop-Debug/CMakeFiles/PreGraphic_autogen.dir
