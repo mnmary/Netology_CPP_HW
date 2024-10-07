@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->pb_clearResult->setCheckable(true);
 
+    //нам нужно 1000 точек для графика
+   // resultV.resize(1000);
+
     chart = new QChart( );
     chart->legend()->setVisible(false);
     chartView = new QChartView(chart);
@@ -243,6 +246,11 @@ void MainWindow::on_pb_start_clicked()
 
                                                 DisplayResult(mins, maxs);
 
+                                                //запоминаем первые 1000 точек
+                                                resultV.clear();
+                                                for (int i = 0; i < MAX_POINT; i++)
+                                                    resultV.append(res[i]);
+
                                                 //данные готовы - подаем сигнал
                                                 emit sig_show_graphic();
 
@@ -256,7 +264,7 @@ void MainWindow::on_pb_start_clicked()
 
 }
 
-//обработчик сигнала sig_Data_ready
+//обработчик сигнала sig_show_graphic
 void MainWindow::show_graphic(QVector<double> mins, QVector<double> maxs)
 {
     if(chart->series().isEmpty() == false)
@@ -265,30 +273,12 @@ void MainWindow::show_graphic(QVector<double> mins, QVector<double> maxs)
     }
 
     QVector<double> x;
-    QVector<double> y;
-
-    double step = maxs.first();
-
-
-    double minVal = mins.first();
-    double maxVal = maxs.first();
-
-    double steps = round(((maxVal-minVal)/step));
-    x.resize(steps);
-    x[0] = minVal;
-    for(int i = 1; i<steps; i++)
+    for (int i = 0; i < MAX_POINT; i++)
     {
-        x[i] = x[i-1]+step;
+        x.append(i);
     }
 
-
-    y.resize(steps);
-
-    for(int i = 0; i<steps; i++)
-    {
-        y[i] = x[i];
-    }
-    graphClass->AddDataToGrahp(x,y, FIRST_GRAPH);
+    graphClass->AddDataToGrahp(x,resultV, FIRST_GRAPH);
 
 
     graphClass->UpdateGraph(chart);

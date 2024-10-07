@@ -16,6 +16,7 @@
 #include "graphicchart.h"
 
 #define FD 1000.0 //частота дискретизации
+#define MAX_POINT 1000 //сколько точек вывести
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -67,6 +68,6 @@ private:
     QChart* chart;
     QChartView* chartView;
     QGridLayout *layout;
-
+    QVector<double> resultV;
 };
 #endif // MAINWINDOW_H
