@@ -1,36 +1,43 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QTableWidget>
 #include <QObject>
-#include <QSqlDatabase>
+#include <QSqlQueryModel>
+#include <QSqlTableModel>
+#include <QTableView>
 #include <QSqlError>
-#include <QSqlQuery>
+#include <QTableWidget>
 
-#define DB_NAME "QPSQL"
+//--- параметры драйвера БД ---//
+#define POSTGRE_DRIVER "QPSQL"
+#define DB_NAME "MyDB"
+//-----------------------------//
+
+//Количество полей данных необходимых для подключения к БД
 #define NUM_DATA_FOR_CONNECT_TO_DB 5
 
-
+//Перечисление полей данных
 enum fieldsForConnect{
-
     hostName = 0,
     dbName = 1,
     login = 2,
     pass = 3,
     port = 4
-
 };
 
-
-enum answersType{
+//Типы запросов
+enum requestType{
 
     requestAllFilms = 1,
-    requestComedy = 2,
-    requestHorrors = 3
+    requestComedy   = 2,
+    requestHorrors  = 3
 
 };
-
-
+//модель запроса
+enum class modelType{
+    query = 1,
+    table
+};
 
 class DataBase : public QObject
 {
@@ -40,36 +47,28 @@ public:
     explicit DataBase(QObject *parent = nullptr);
     ~DataBase();
 
-    void AddDataBase( QString nameDB = "");
-    bool ConnectToDataBase(QVector<QString> dataForConnect);
-    void DisconnectFromDataBase(QString nameDb = "");
-    void RequestToDB(QString request);
-    QSqlError GetLastError(void);
-
-    void ReadAnswerFromDB();
-
-
-
+    void AddDataBase(QString driver, QString nameDB = "");//подтягиваем драйвер БД
+    void DisconnectFromDataBase(QString nameDb = "");//отключаемся
+    void RequestToDB(QString request);//запрос запросная модель
+    void RequestToTableDB();//запрос табличная модель
+    QSqlError GetLastError(void);//прочитать последнюю ошибку работы с БД
+    void ConnectToDataBase(QVector<QString> dataForConnect);//подключаемся к БД
+    void ReadAnswerFromDB();//покажем результаты запроса к БД
+    void BindView(QTableView* view_);//подтягиваем таблицу для вывода результатов запроса
 
 signals:
+   void sig_SendStatusConnection(bool);//сигнал показывает статус соединения с БД
+   void sig_SendStatusRequest(QSqlError err);//сигнал показывает, что произведен запрос к БД и нужно выводить результат
 
-    void sig_SendDataFromDB(const QTableWidget *tableWg);
-    void sig_SendStatusConnection(bool);
-    void sig_SendStatusRequest(QSqlError err);
 
 
 private:
+    QSqlDatabase* dataBase;//наша база
+    QSqlQueryModel* qModel;//здесь храним результаты запроса
+    QSqlTableModel* tModel;//здесь храним результаты запроса
+    QTableView* view;//здесь отображаем результаты запроса
 
-    QSqlDatabase* dataBase;
-
-    QSqlQuery* simpleQuery;
-
-    QTableWidget* tableWidget;
-
-    QTableView* tableView;
-
-
-
+    modelType currentRequestedModel;//здесь храним выбранную модель запроса
 
 
 };

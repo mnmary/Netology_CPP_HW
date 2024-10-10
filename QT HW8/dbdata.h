@@ -3,29 +3,30 @@
 
 #include <QDialog>
 
+//окно диалога ввода параметров подключения к БД
 namespace Ui {
-class DbData;
+class DBData;
 }
 
-class DbData : public QDialog
+class DBData : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DbData(QWidget *parent = nullptr);
-    ~DbData();
+    explicit DBData(QWidget *parent = nullptr);
+    ~DBData();
 
+//сигналы
+signals:
+   void sig_sendData(QVector<QString> dbData);//сигнал, что параметры подключения заполнены
 
- signals:
-    void sig_sendData(QVector<QString> dbData);
-
-
+//обработчики нажатия кнопок
 private slots:
-    void on_buttonBox_accepted();
+    void on_buttonBox_accepted();//пользователь нажал ОК в диалоговом окне ввода параметров подключения
 
 private:
-    Ui::DbData *ui;
-    QVector<QString> data;
+    Ui::DBData *ui;
+    QVector<QString> data;//вектор для хранения параметров подключения в форме
 
 };
 

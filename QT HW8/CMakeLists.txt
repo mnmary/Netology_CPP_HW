@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Sql Concurrent)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Concurrent Sql)
 
 
 set(PROJECT_SOURCES
@@ -24,19 +24,19 @@ set(PROJECT_SOURCES
         dbdata.ui
 )
 
-qt_add_executable(PreDataBase
-    MANUAL_FINALIZATION
-    ${PROJECT_SOURCES}
+add_executable(PreDataBase
+	${PROJECT_SOURCES}
 )
+
 
 target_link_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/PG_Libs)
 target_link_libraries(PreDataBase PRIVATE Qt6::Widgets
-                                          Qt6::Sql
-                                          Qt6::Concurrent
-                                          libcrypto-3-x64
-                                          libiconv-2
-                                          libintl-9
-                                          libpq
-                                          libssl-3-x64)
+                                             Qt6::Concurrent
+                                             Qt6::Sql
+                                             libcrypto-3-x64
+                                             libiconv-2
+                                             libintl-9
+                                             libpq
+                                             libssl-3-x64)
 
-qt_finalize_executable(PreDataBase)
+
